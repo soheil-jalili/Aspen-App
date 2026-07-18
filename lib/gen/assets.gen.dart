@@ -17,8 +17,23 @@ class $AssetsImagesGen {
   /// File path: assets/images/Frame.png
   AssetGenImage get frame => const AssetGenImage('assets/images/Frame.png');
 
-  /// File path: assets/images/Home.png
-  AssetGenImage get home => const AssetGenImage('assets/images/Home.png');
+  /// File path: assets/images/Heart.svg
+  String get heart => 'assets/images/Heart.svg';
+
+  /// File path: assets/images/Home.svg
+  String get home => 'assets/images/Home.svg';
+
+  /// File path: assets/images/Profile.svg
+  String get profile => 'assets/images/Profile.svg';
+
+  /// File path: assets/images/Search.svg
+  String get search => 'assets/images/Search.svg';
+
+  /// File path: assets/images/Ticket.svg
+  String get ticket => 'assets/images/Ticket.svg';
+
+  /// File path: assets/images/arrow-down.svg
+  String get arrowDown => 'assets/images/arrow-down.svg';
 
   /// File path: assets/images/back.png
   AssetGenImage get back => const AssetGenImage('assets/images/back.png');
@@ -45,19 +60,30 @@ class $AssetsImagesGen {
   /// File path: assets/images/home2.png
   AssetGenImage get home2 => const AssetGenImage('assets/images/home2.png');
 
+  /// File path: assets/images/location.svg
+  String get location => 'assets/images/location.svg';
+
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
-  /// File path: assets/images/star.png
-  AssetGenImage get star => const AssetGenImage('assets/images/star.png');
+  /// File path: assets/images/star.svg
+  String get star => 'assets/images/star.svg';
+
+  /// File path: assets/images/trending-up.svg
+  String get trendingUp => 'assets/images/trending-up.svg';
 
   /// File path: assets/images/wifi.png
   AssetGenImage get wifi => const AssetGenImage('assets/images/wifi.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
+  List<dynamic> get values => [
     frame,
+    heart,
     home,
+    profile,
+    search,
+    ticket,
+    arrowDown,
     back,
     bathTub,
     cart1,
@@ -66,8 +92,10 @@ class $AssetsImagesGen {
     food,
     home1,
     home2,
+    location,
     splash,
     star,
+    trendingUp,
     wifi,
   ];
 }

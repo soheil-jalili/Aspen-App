@@ -1,91 +1,110 @@
 import 'package:aspen/constants/app_colors.dart';
 import 'package:aspen/gen/assets.gen.dart';
 import 'package:aspen/gen/fonts.gen.dart';
-import 'package:aspen/screens/home_screen.dart';
+import 'package:aspen/screens/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: SystemUiOverlay.values,
+    );
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(Assets.images.splash.path),
-                ),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(Assets.images.splash.path),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: AppColors.splashGradientColors,
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: AppColors.splashGradientColors,
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
               ),
             ),
-            Positioned(
-              left: 0,
-              right: 0,
-              top: 93,
-              child: Text(
-                textAlign: TextAlign.center,
-                'Aspen',
-                style: TextStyle(
-                  fontSize: 116,
-                  fontFamily: FontFamily.hiatus,
-                  color: AppColors.whiteColor,
-                ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 93,
+            child: Text(
+              textAlign: TextAlign.center,
+              'Aspen',
+              style: TextStyle(
+                fontSize: 116,
+                fontFamily: FontFamily.hiatus,
+                color: AppColors.whiteColor,
               ),
             ),
-            Positioned(
-              bottom: 48,
-              right: 32,
-              left: 32,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Plan your',
-                    style: TextStyle(
-                      color: AppColors.whiteColor,
-                      fontSize: 24,
-                      fontFamily: FontFamily.montserratRegular,
-                    ),
+          ),
+          Positioned(
+            bottom: 48,
+            right: 32,
+            left: 32,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Plan your',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                    fontSize: 24,
+                    fontFamily: FontFamily.montserratRegular,
                   ),
-                  Text(
-                    'Luxurious',
-                    style: TextStyle(
-                      color: AppColors.whiteColor,
-                      fontSize: 40,
+                ),
+                Text(
+                  'Luxurious',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                    fontSize: 40,
 
-                      fontFamily: FontFamily.montserratMedium,
-                    ),
+                    fontFamily: FontFamily.montserratMedium,
                   ),
-                  Text(
-                    'Vacation',
-                    style: TextStyle(
-                      color: AppColors.whiteColor,
-                      fontSize: 40,
+                ),
+                Text(
+                  'Vacation',
+                  style: TextStyle(
+                    color: AppColors.whiteColor,
+                    fontSize: 40,
 
-                      fontFamily: FontFamily.montserratMedium,
-                    ),
+                    fontFamily: FontFamily.montserratMedium,
                   ),
+                ),
 
-                  SizedBox(height: 24),
+                SizedBox(height: 24),
 
-                  _btnExplore(context),
-                ],
-              ),
+                _btnExplore(context),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -95,7 +114,7 @@ class SplashScreen extends StatelessWidget {
       onTap: () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => MainScreen()),
         );
       },
       child: Container(

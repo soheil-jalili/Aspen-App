@@ -17,6 +17,12 @@ class FontFamily {
   /// Font family: Circularxx-Bold
   static const String circularxxBold = 'Circularxx-Bold';
 
+  /// Font family: Circularxx-Book
+  static const String circularxxBook = 'Circularxx-Book';
+
+  /// Font family: Circularxx-Regular
+  static const String circularxxRegular = 'Circularxx-Regular';
+
   /// Font family: Hiatus
   static const String hiatus = 'Hiatus';
 
