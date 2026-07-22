@@ -2,6 +2,7 @@ import 'package:aspen/constants/app_colors.dart';
 import 'package:aspen/gen/assets.gen.dart';
 import 'package:aspen/gen/fonts.gen.dart';
 import 'package:aspen/models/card_model.dart';
+import 'package:aspen/screens/detail_screen.dart';
 import 'package:aspen/utility/top_list_horizental.dart';
 import 'package:aspen/widgets/primary_card.dart';
 import 'package:flutter/material.dart';
@@ -61,19 +62,24 @@ class _HomeScreenState extends State<HomeScreen> {
           itemCount: popularCard.length,
           itemBuilder: (context, index) {
             final isLiked = _likedIndicesPopularCard.contains(index);
-            return PrimaryCard(
-              index: index,
-              isLiked: isLiked,
-              onLikeTapped: () {
-                setState(() {
-                  if (isLiked) {
-                    _likedIndicesPopularCard.remove(index);
-                  } else {
-                    _likedIndicesPopularCard.add(index);
-                  }
-                });
-              },
-              cardModel: popularCard[index],
+            return GestureDetector(
+              onTap: () => Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => DetailScreen())),
+              child: PrimaryCard(
+                index: index,
+                isLiked: isLiked,
+                onLikeTapped: () {
+                  setState(() {
+                    if (isLiked) {
+                      _likedIndicesPopularCard.remove(index);
+                    } else {
+                      _likedIndicesPopularCard.add(index);
+                    }
+                  });
+                },
+                cardModel: popularCard[index],
+              ),
             );
           },
         ),
@@ -90,19 +96,24 @@ class _HomeScreenState extends State<HomeScreen> {
           itemCount: topDealsCard.length,
           itemBuilder: (context, index) {
             final isLiked = _likedIndicesTopDealsCard.contains(index);
-            return PrimaryCard(
-              index: index,
-              isLiked: isLiked,
-              onLikeTapped: () {
-                setState(() {
-                  if (isLiked) {
-                    _likedIndicesTopDealsCard.remove(index);
-                  } else {
-                    _likedIndicesTopDealsCard.add(index);
-                  }
-                });
-              },
-              cardModel: topDealsCard[index],
+            return GestureDetector(
+              onTap: () => Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => DetailScreen())),
+              child: PrimaryCard(
+                index: index,
+                isLiked: isLiked,
+                onLikeTapped: () {
+                  setState(() {
+                    if (isLiked) {
+                      _likedIndicesTopDealsCard.remove(index);
+                    } else {
+                      _likedIndicesTopDealsCard.add(index);
+                    }
+                  });
+                },
+                cardModel: topDealsCard[index],
+              ),
             );
           },
         ),
@@ -119,95 +130,100 @@ class _HomeScreenState extends State<HomeScreen> {
           scrollDirection: Axis.horizontal,
           itemCount: 10,
           itemBuilder: (context, index) {
-            return Container(
-              padding: EdgeInsets.only(left: 4, right: 4, top: 4),
-              clipBehavior: Clip.hardEdge,
-              width: 174,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                gradient: LinearGradient(
-                  colors: AppColors.recommendedGradientsColors,
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 4),
-                    blurRadius: 20,
-                    spreadRadius: 0,
-                    color: AppColors.recommendedShadowContainerColor,
+            return GestureDetector(
+              onTap: () => Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (context) => DetailScreen())),
+              child: Container(
+                padding: EdgeInsets.only(left: 4, right: 4, top: 4),
+                clipBehavior: Clip.hardEdge,
+                width: 174,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  gradient: LinearGradient(
+                    colors: AppColors.recommendedGradientsColors,
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
                   ),
-                ],
-                border: Border.all(width: 1, color: AppColors.strokeColor),
-              ),
-              margin: EdgeInsets.only(
-                left: index == 0 ? 20 : 0,
-                right: index == 9 ? 20 : 16,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Assets.images.cart2.image(fit: BoxFit.cover),
-                      ),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 4),
+                      blurRadius: 20,
+                      spreadRadius: 0,
+                      color: AppColors.recommendedShadowContainerColor,
+                    ),
+                  ],
+                  border: Border.all(width: 1, color: AppColors.strokeColor),
+                ),
+                margin: EdgeInsets.only(
+                  left: index == 0 ? 20 : 0,
+                  right: index == 9 ? 20 : 16,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Assets.images.cart2.image(fit: BoxFit.cover),
+                        ),
 
-                      Positioned(
-                        right: 10,
-                        bottom: -10,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 4,
-                            horizontal: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.recommendedContainerBoxColor,
-                            borderRadius: BorderRadius.circular(100),
-                            border: Border.all(width: 2, color: Colors.white),
-                          ),
-                          child: Text(
-                            '2N/3D',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 10,
-                              fontFamily: FontFamily.montserratSemiBold,
+                        Positioned(
+                          right: 10,
+                          bottom: -10,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 4,
+                              horizontal: 6,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.recommendedContainerBoxColor,
+                              borderRadius: BorderRadius.circular(100),
+                              border: Border.all(width: 2, color: Colors.white),
+                            ),
+                            child: Text(
+                              '2N/3D',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontFamily: FontFamily.montserratSemiBold,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(height: 6),
-                  Text(
-                    'Explore Aspen',
-                    style: TextStyle(
-                      fontFamily: FontFamily.circularMedium,
-                      color: AppColors.titleColor,
-                      fontSize: 14,
+                      ],
                     ),
-                  ),
 
-                  Row(
-                    children: [
-                      SvgPicture.asset(Assets.images.trendingUp),
-                      SizedBox(width: 4),
-                      Text(
-                        'Hot Deal',
-                        style: TextStyle(
-                          fontFamily: FontFamily.circularxxRegular,
-                          color: AppColors.descriptionColor,
-                          fontSize: 10,
-                        ),
+                    SizedBox(height: 6),
+                    Text(
+                      'Explore Aspen',
+                      style: TextStyle(
+                        fontFamily: FontFamily.circularMedium,
+                        color: AppColors.titleColor,
+                        fontSize: 14,
                       ),
-                    ],
-                  ),
+                    ),
 
-                  SizedBox(height: 4),
-                ],
+                    Row(
+                      children: [
+                        SvgPicture.asset(Assets.images.trendingUp),
+                        SizedBox(width: 4),
+                        Text(
+                          'Hot Deal',
+                          style: TextStyle(
+                            fontFamily: FontFamily.circularxxRegular,
+                            color: AppColors.descriptionColor,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(height: 4),
+                  ],
+                ),
               ),
             );
           },
