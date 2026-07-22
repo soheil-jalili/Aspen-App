@@ -14,9 +14,6 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/Frame.png
-  AssetGenImage get frame => const AssetGenImage('assets/images/Frame.png');
-
   /// File path: assets/images/Heart.svg
   String get heart => 'assets/images/Heart.svg';
 
@@ -35,12 +32,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/arrow-down.svg
   String get arrowDown => 'assets/images/arrow-down.svg';
 
-  /// File path: assets/images/back.png
-  AssetGenImage get back => const AssetGenImage('assets/images/back.png');
+  /// File path: assets/images/arrow-right.svg
+  String get arrowRight => 'assets/images/arrow-right.svg';
 
-  /// File path: assets/images/bath tub.png
-  AssetGenImage get bathTub =>
-      const AssetGenImage('assets/images/bath tub.png');
+  /// File path: assets/images/back.svg
+  String get back => 'assets/images/back.svg';
+
+  /// File path: assets/images/bath.svg
+  String get bath => 'assets/images/bath.svg';
 
   /// File path: assets/images/cart1.png
   AssetGenImage get cart1 => const AssetGenImage('assets/images/cart1.png');
@@ -48,11 +47,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/cart2.png
   AssetGenImage get cart2 => const AssetGenImage('assets/images/cart2.png');
 
+  /// File path: assets/images/cover.jpg
+  AssetGenImage get cover => const AssetGenImage('assets/images/cover.jpg');
+
   /// File path: assets/images/detail.png
   AssetGenImage get detail => const AssetGenImage('assets/images/detail.png');
 
-  /// File path: assets/images/food.png
-  AssetGenImage get food => const AssetGenImage('assets/images/food.png');
+  /// File path: assets/images/dinner.svg
+  String get dinner => 'assets/images/dinner.svg';
 
   /// File path: assets/images/home1.png
   AssetGenImage get home1 => const AssetGenImage('assets/images/home1.png');
@@ -63,6 +65,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/location.svg
   String get location => 'assets/images/location.svg';
 
+  /// File path: assets/images/pool.svg
+  String get pool => 'assets/images/pool.svg';
+
   /// File path: assets/images/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/images/splash.png');
 
@@ -72,27 +77,29 @@ class $AssetsImagesGen {
   /// File path: assets/images/trending-up.svg
   String get trendingUp => 'assets/images/trending-up.svg';
 
-  /// File path: assets/images/wifi.png
-  AssetGenImage get wifi => const AssetGenImage('assets/images/wifi.png');
+  /// File path: assets/images/wifi.svg
+  String get wifi => 'assets/images/wifi.svg';
 
   /// List of all assets
   List<dynamic> get values => [
-    frame,
     heart,
     home,
     profile,
     search,
     ticket,
     arrowDown,
+    arrowRight,
     back,
-    bathTub,
+    bath,
     cart1,
     cart2,
+    cover,
     detail,
-    food,
+    dinner,
     home1,
     home2,
     location,
+    pool,
     splash,
     star,
     trendingUp,

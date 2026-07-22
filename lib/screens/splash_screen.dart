@@ -17,6 +17,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
+    });
   }
 
   @override

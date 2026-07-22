@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int topListIndexActive = 0;
   final Set<int> _likedIndicesPopularCard = {};
   final Set<int> _likedIndicesTopDealsCard = {};
-
+  final FocusNode _searchFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,9 +63,18 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (context, index) {
             final isLiked = _likedIndicesPopularCard.contains(index);
             return GestureDetector(
-              onTap: () => Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => DetailScreen())),
+              onTap: () async {
+                _searchFocusNode.unfocus();
+                await Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => DetailScreen(
+                      index: index,
+                      likedIndices: _likedIndicesPopularCard,
+                    ),
+                  ),
+                );
+                setState(() {});
+              },
               child: PrimaryCard(
                 index: index,
                 isLiked: isLiked,
@@ -97,9 +106,18 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (context, index) {
             final isLiked = _likedIndicesTopDealsCard.contains(index);
             return GestureDetector(
-              onTap: () => Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => DetailScreen())),
+              onTap: () async {
+                _searchFocusNode.unfocus();
+                await Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => DetailScreen(
+                      index: index,
+                      likedIndices: _likedIndicesTopDealsCard,
+                    ),
+                  ),
+                );
+                setState(() {});
+              },
               child: PrimaryCard(
                 index: index,
                 isLiked: isLiked,
@@ -130,100 +148,95 @@ class _HomeScreenState extends State<HomeScreen> {
           scrollDirection: Axis.horizontal,
           itemCount: 10,
           itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () => Navigator.of(
-                context,
-              ).push(MaterialPageRoute(builder: (context) => DetailScreen())),
-              child: Container(
-                padding: EdgeInsets.only(left: 4, right: 4, top: 4),
-                clipBehavior: Clip.hardEdge,
-                width: 174,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  gradient: LinearGradient(
-                    colors: AppColors.recommendedGradientsColors,
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+            return Container(
+              padding: EdgeInsets.only(left: 4, right: 4, top: 4),
+              clipBehavior: Clip.hardEdge,
+              width: 174,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                gradient: LinearGradient(
+                  colors: AppColors.recommendedGradientsColors,
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0, 4),
+                    blurRadius: 20,
+                    spreadRadius: 0,
+                    color: AppColors.recommendedShadowContainerColor,
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 4),
-                      blurRadius: 20,
-                      spreadRadius: 0,
-                      color: AppColors.recommendedShadowContainerColor,
-                    ),
-                  ],
-                  border: Border.all(width: 1, color: AppColors.strokeColor),
-                ),
-                margin: EdgeInsets.only(
-                  left: index == 0 ? 20 : 0,
-                  right: index == 9 ? 20 : 16,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Assets.images.cart2.image(fit: BoxFit.cover),
-                        ),
-
-                        Positioned(
-                          right: 10,
-                          bottom: -10,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 4,
-                              horizontal: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.recommendedContainerBoxColor,
-                              borderRadius: BorderRadius.circular(100),
-                              border: Border.all(width: 2, color: Colors.white),
-                            ),
-                            child: Text(
-                              '2N/3D',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 10,
-                                fontFamily: FontFamily.montserratSemiBold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(height: 6),
-                    Text(
-                      'Explore Aspen',
-                      style: TextStyle(
-                        fontFamily: FontFamily.circularMedium,
-                        color: AppColors.titleColor,
-                        fontSize: 14,
+                ],
+                border: Border.all(width: 1, color: AppColors.strokeColor),
+              ),
+              margin: EdgeInsets.only(
+                left: index == 0 ? 20 : 0,
+                right: index == 9 ? 20 : 16,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Assets.images.cart2.image(fit: BoxFit.cover),
                       ),
-                    ),
 
-                    Row(
-                      children: [
-                        SvgPicture.asset(Assets.images.trendingUp),
-                        SizedBox(width: 4),
-                        Text(
-                          'Hot Deal',
-                          style: TextStyle(
-                            fontFamily: FontFamily.circularxxRegular,
-                            color: AppColors.descriptionColor,
-                            fontSize: 10,
+                      Positioned(
+                        right: 10,
+                        bottom: -10,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 4,
+                            horizontal: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.recommendedContainerBoxColor,
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(width: 2, color: Colors.white),
+                          ),
+                          child: Text(
+                            '2N/3D',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontFamily: FontFamily.montserratSemiBold,
+                            ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
 
-                    SizedBox(height: 4),
-                  ],
-                ),
+                  SizedBox(height: 6),
+                  Text(
+                    'Explore Aspen',
+                    style: TextStyle(
+                      fontFamily: FontFamily.circularMedium,
+                      color: AppColors.titleColor,
+                      fontSize: 14,
+                    ),
+                  ),
+
+                  Row(
+                    children: [
+                      SvgPicture.asset(Assets.images.trendingUp),
+                      SizedBox(width: 4),
+                      Text(
+                        'Hot Deal',
+                        style: TextStyle(
+                          fontFamily: FontFamily.circularxxRegular,
+                          color: AppColors.descriptionColor,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 4),
+                ],
               ),
             );
           },
@@ -333,6 +346,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(width: 8),
           Expanded(
             child: TextField(
+              focusNode: _searchFocusNode,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintMaxLines: 1,

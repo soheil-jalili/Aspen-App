@@ -13,7 +13,6 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.3.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -54,8 +53,8 @@ flutter:
 
   - family: Circularxx-Bold
     fonts:
-    - asset: assets/fonts/Circularxx-bold.ttf
-      weight: 600
+    - asset: assets/fonts/circular-bold.ttf
+
 
   - family: Circularxx-Book
     fonts:
